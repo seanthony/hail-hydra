@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hail hydra</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="padding:5rem;">
+        <div id="main" style="padding:5rem;">
+
+        </div>
+    </div>
+    <script>
+        HTML = '<button onclick="killOneTwoGrow()">Hail Hydra</button>';
+        DEADHEAD = '<span>X</span>';
+        W = window.innerWidth;
+        H = window.innerHeight;
+
+        function addButton() {
+            document.querySelector('#main').innerHTML += HTML;
+            var button = [].slice.call(document.querySelectorAll('button')).pop();
+            var top = Math.floor(Math.random() * H);
+            var left = Math.floor(Math.random() * W);
+            var style = 'position:fixed;top:' + top + 'px;left:' + left + 'px;';
+            button.setAttribute('style', style);
+        }
+        addButton();
+
+        function killOneTwoGrow() {
+            var target = event.target;
+            var styleObj = target.style;
+            var top = styleObj.top;
+            var left = styleObj.left;
+            console.log(top + ' ' + left);
+            target.parentElement.removeChild(target);
+            document.querySelector('#main').innerHTML += DEADHEAD;
+            var span = [].slice.call(document.querySelectorAll('span')).pop();
+            var style = 'position:fixed;top:' + top + ';left:' + left + ';color:red';
+            span.setAttribute('style', style);
+            addButton();
+            addButton();
+        }
+
+
+    </script>
+</body>
+
+</html>
